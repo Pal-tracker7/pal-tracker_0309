@@ -1,5 +1,5 @@
 applications:
-- name: pal-tracker
+- name: pal-tracker-production
   path: src/PalTracker/bin/Release/netcoreapp2.1/publish/
   routes:
   - route: msg-pal-p1-tracker.cfapps.io
