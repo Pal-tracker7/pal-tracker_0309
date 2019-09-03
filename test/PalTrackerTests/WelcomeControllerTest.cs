@@ -1,5 +1,5 @@
-﻿using PalTracker;
-using Xunit;
+﻿using Xunit;
+using PalTracker;
 
 namespace PalTrackerTests
 {
