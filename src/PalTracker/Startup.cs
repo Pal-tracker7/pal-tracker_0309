@@ -26,11 +26,13 @@ namespace PalTracker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<ITimeEntryRepository,InMemoryTimeEntryRepository>();    
             services.AddSingleton(sp => new WelcomeMessage(Configuration.GetValue<string>("WELCOME_MESSAGE", "WELCOME_MESSAGE not configured.")));
             services.AddSingleton(sp => new CloudFoundryInfo(Configuration.GetValue<string>("PORT", "8080"),
             Configuration.GetValue<string>("MEMORY_LIMIT", "512M"),
             Configuration.GetValue<string>("CF_INSTANCE_INDEX", "1"),
-            Configuration.GetValue<string>("CF_INSTANCE_ADDR", "127.0.0.1")));             
+            Configuration.GetValue<string>("CF_INSTANCE_ADDR", "127.0.0.1")));
+                  
             
         }
 
