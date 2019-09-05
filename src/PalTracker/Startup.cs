@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Steeltoe.CloudFoundry.Connector.MySql.EFCore;
 
 namespace PalTracker
 {
@@ -27,6 +28,7 @@ namespace PalTracker
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<ITimeEntryRepository,InMemoryTimeEntryRepository>();    
+            services.AddDbContext<TimeEntryContext>(options => options.UseMySql(Configuration));
             services.AddSingleton(sp => new WelcomeMessage(Configuration.GetValue<string>("WELCOME_MESSAGE", "WELCOME_MESSAGE not configured.")));
             services.AddSingleton(sp => new CloudFoundryInfo(Configuration.GetValue<string>("PORT", "8080"),
             Configuration.GetValue<string>("MEMORY_LIMIT", "512M"),
