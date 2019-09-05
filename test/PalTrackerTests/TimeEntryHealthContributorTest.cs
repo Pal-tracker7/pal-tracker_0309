@@ -25,7 +25,7 @@ namespace PalTrackerTests
             const int timeEntryCount = MaxTimeEntries - 1;
 
             _repository.Setup(r => r.List())
-                .Returns(MakeTimeEntries(timeEntryCount));
+                .Returns(MakeTimeEntries(timeEntryCount).ToList());
 
             Assert.Equal(UP, _contributor.Health().Status);
             Assert.Equal(MaxTimeEntries, _contributor.Health().Details["threshold"]);
@@ -39,7 +39,7 @@ namespace PalTrackerTests
             const int timeEntryCount = MaxTimeEntries;
 
             _repository.Setup(r => r.List())
-                .Returns(MakeTimeEntries(timeEntryCount));
+                .Returns(MakeTimeEntries(timeEntryCount).ToList());
 
             Assert.Equal(DOWN, _contributor.Health().Status);
             Assert.Equal(MaxTimeEntries, _contributor.Health().Details["threshold"]);
@@ -53,7 +53,7 @@ namespace PalTrackerTests
             const int timeEntryCount = MaxTimeEntries + 1;
 
             _repository.Setup(r => r.List())
-                .Returns(MakeTimeEntries(timeEntryCount));
+                .Returns(MakeTimeEntries(timeEntryCount).ToList());
 
             Assert.Equal(DOWN, _contributor.Health().Status);
             Assert.Equal(MaxTimeEntries, _contributor.Health().Details["threshold"]);
