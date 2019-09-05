@@ -49,7 +49,7 @@ namespace PalTracker
         }
 
         private TimeEntryRecord FindRecord(long id) =>
-            _context.TimeEntryRecords.AsNoTracking().Single(t => t.Id == id);
+          _context.TimeEntryRecords.Count() > 0?  _context.TimeEntryRecords.AsNoTracking().Single(t => t.Id == id):new TimeEntryRecord();
         
     }
 }

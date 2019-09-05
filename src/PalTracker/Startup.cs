@@ -27,7 +27,8 @@ namespace PalTracker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSingleton<ITimeEntryRepository,InMemoryTimeEntryRepository>();    
+            // services.AddSingleton<ITimeEntryRepository,InMemoryTimeEntryRepository>();
+            services.AddScoped<ITimeEntryRepository, MySqlTimeEntryRepository>();    
             services.AddDbContext<TimeEntryContext>(options => options.UseMySql(Configuration));
             services.AddSingleton(sp => new WelcomeMessage(Configuration.GetValue<string>("WELCOME_MESSAGE", "WELCOME_MESSAGE not configured.")));
             services.AddSingleton(sp => new CloudFoundryInfo(Configuration.GetValue<string>("PORT", "8080"),
